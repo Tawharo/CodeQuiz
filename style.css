@@ -1,0 +1,14 @@
+.button {
+    background-color: rgba(45, 155, 11, 0.24);
+    height: 30px;
+}
+#startBtn {
+    background-color: rgba(45, 155, 11, 0.24);
+}
+.questionSpace {
+    display: flex;
+    width: 600px;
+    height: 400px;
+    background-color: silver;
+    margin-top: 20px;
+}
