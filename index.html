@@ -7,54 +7,31 @@
     <!--Bootstrap code-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <!--CSS-->
-    <link rel="stylesheet" href="./style.css" />
     <title>Code Quiz Game</title>
 </head>
 
 <body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="scores.html">High Scores</a>
+        <span class="nabar-text" id="time"></span>
+    </nav>    
     <div class="container">
-        <header>
-            <h1>Code Quiz Game</h1>
-        </header>
-
-        <button class="button scoreBtn">High Scores</button>
-
-        <p>Timer:
-            <span id="timer"></span>
-        </p>
-
-        <button class="button" id="startBtn">START</button>
         <div class="row">
-            <article class="questionSpace">
-                <div>
-                    <p>Question Space</p>
-                    <button class="button answerButton">Answer A</button>
-                    <p></p>
-                    <button class="button answerButton">Answer B</button>
-                    <p></p>
-                    <button class="button answerButton">Answer C</button>
-                    <p></p>
-                    <button class="button answerButton">Answer D</button>
-                    <p></p>
-                </div>
-            </article>
+            <div id="question">
+                Code Quiz Game!
+            </div>
         </div>
     </div>
+    <div class="row">
+        <div id="options"></div>
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-primary" id="start-button">Start Quiz</button>
+    </div>    
+        
     <!--JS-->
     <script src="./script.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>

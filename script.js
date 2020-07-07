@@ -1,28 +1,55 @@
+//if we use querySelector, need to define class . or id #
 var startBtn = document.querySelector("start");
 var timeDisplay = document.querySelector("timeDisplay");
 var totalScores = document.querySelector("totalScores");
+var timerElementId = document.querySelector("#timer");
+var container = document.querySelector(".container");
 
-const initialQuizTimeSec = 60;
-const timerElementId = "timer";
+//if we use getElementById or getElementByClassName, then we don't need to define with . or hastag anymore
+var startBtn = document.getElementById("startBtn")
+
+var initialQuizTimeSec = 60;
 var currentQuestion = 0;
+var intervalRef;
 
-var initialilzeTimer = function () {
-    var timer = document.getElementById(timerElementId);
-    timer.innerHTML = initialQuizTimeSec;
-}
+
+//var initialilzeTimer = function () {
+// var timer = document.getElementById(timerElementId);
+// timer.innerHTML = initialQuizTimeSec;
+//}
 
 var updateTimer = function () {
-    var timer = document.getElementById(timerElementId);
-    var timeVal = parseInt(timer.innerHTML, 10);
-    if (timeVal > 0) {
-        timer.innerHTML = --timeVal;
+    // var timer = document.getElementById(timerElementId);
+    //var timeVal = parseInt(timer.innerHTML, 10);
+    //if (timeVal > 0) {
+    // timer.innerHTML = --timeVal;
+    //}
+
+    //starting time decreases by one
+    initialQuizTimeSec--;
+    //display the new time on screen everytime inititialQuizTimeSec decreases by 1
+    timerElementId.textContent = initialQuizTimeSec;
+    //if the time get to 0, we end the quiz by clearing the interval set on line 42 intervalRef = setInterval(updateTimer, 1000);
+    if (initialQuizTimeSec <= 0) {
+        endQuiz();
     }
 };
-initialilzeTimer();
+//initialilzeTimer();
+function endQuiz() {
+    //Clearing the interval by calling the variable which the interval was assigned to
+    clearInterval(intervalRef);
+}
 
 //press "Start" to startb the game and initiate questions
-document.getElementById("startBtn").addEventListener("click", function () {
-    var intervalRef = setInterval(updateTimer, 1000);
+startBtn.addEventListener("click", function () {
+    //Timer starts running, updateTimer function is called every 1 sec
+    intervalRef = setInterval(updateTimer, 1000);
+
+    //display the starting time
+    timerElementId.textContent = initialQuizTimeSec;
+
+    //hide the start button
+    container.removeChild(startBtn)
 });
 // Inititate Questrions
 var questions = [
@@ -79,11 +106,11 @@ var questions = [
 
 //When correctAnswer is clicked
 //if (correctAnswer.addEventListener) {
- //   for (i = 0; i < )
+//   for (i = 0; i < )
 //}
 
 //High score button
-totalScores = addEventListener("click", function() {
+totalScores = addEventListener("click", function () {
 
 });
 
