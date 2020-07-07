@@ -1,120 +1,203 @@
 //if we use querySelector, need to define class . or id #
-var startBtn = document.querySelector("start");
-var timeDisplay = document.querySelector("timeDisplay");
-var totalScores = document.querySelector("totalScores");
-var timerElementId = document.querySelector("#timer");
-var container = document.querySelector(".container");
+// var startBtn = document.querySelector("start");
+// var timeDisplay = document.querySelector("timeDisplay");
+// var totalScores = document.querySelector("totalScores");
+// var timerElementId = document.querySelector("#timer");
+// var container = document.querySelector(".container");
 
 //if we use getElementById or getElementByClassName, then we don't need to define with . or hastag anymore
-var startBtn = document.getElementById("startBtn")
+// var startBtn = document.getElementById("startBtn")
 
-var initialQuizTimeSec = 60;
-var currentQuestion = 0;
-var intervalRef;
+// var initialQuizTimeSec = 60;
+// var currentQuestion = 0;
+// var intervalRef;
 
 
-//var initialilzeTimer = function () {
-// var timer = document.getElementById(timerElementId);
-// timer.innerHTML = initialQuizTimeSec;
-//}
+// //var initialilzeTimer = function () {
+// // var timer = document.getElementById(timerElementId);
+// // timer.innerHTML = initialQuizTimeSec;
+// //}
+//Global Var's
+var timeEl = document.querySelector("#time");
+var questionEl = document.getElementById("question");
+var optionsEl = document.getElementById("options");
+var startButton = document.getElementById("start-button")
 
-var updateTimer = function () {
-    // var timer = document.getElementById(timerElementId);
-    //var timeVal = parseInt(timer.innerHTML, 10);
-    //if (timeVal > 0) {
-    // timer.innerHTML = --timeVal;
-    //}
+// Data
+var quizOne = {
+    question: "What does CSS stand for?",
+    options: [
+        "Cats Standing Still",
+        "Computer Sending Signals",
+        "Cascading Simple Sheets"
+    ],
+    correctAnswer: "Cascading Style Sheets"
+}
+var quizTwo = {
+    question: "What is a tag in HTML?",
+    options: [
+        "A function",
+        "Identifies the action of HTML",
+        "Gives a name to the line of code"
+    ],
+    correctAnswer: "Defines how browser will format and display"
+}
+var quizThree = {
+    question: "JavaScript commonly interacts with programming languages?",
+    options: [
+        "French and Russian",
+        "C++ and Java",
+        "jQuery and Java",
+    ],
+    correctAnswer: "HTML and CSS"
+}
+var quizFour = {
+    question: "What is the syntax for writing a function?",
+    options: [
+        "var = function",
+        "name function(code to execute){paramter1, parameter2}",
+        "function(parameter1, paramenter2) name"
+    ],
+    correctAnswer: "function name(parameter1, paramter2){code to execute}"
+}
+var quizFive = {
+    question: "JavaScript has been described as...",
+    options: [
+        "light or dark roast.",
+        "giving design to HTML.",
+        "keeping the computer from crashing."
+    ],
+    correctAnswer: "code that animates a website."
+}
+// Timer
 
-    //starting time decreases by one
-    initialQuizTimeSec--;
-    //display the new time on screen everytime inititialQuizTimeSec decreases by 1
-    timerElementId.textContent = initialQuizTimeSec;
-    //if the time get to 0, we end the quiz by clearing the interval set on line 42 intervalRef = setInterval(updateTimer, 1000);
-    if (initialQuizTimeSec <= 0) {
-        endQuiz();
+var secondsLeft = 60;
+var timerInterval;
+var intervalFunction = function () {
+    secondsLeft--;
+    timeEl.textContent = secondsLeft;
+    if (secondsLeft === 0) {
+        clearInterval(timerInterval);
+        sendMessage();
     }
-};
-//initialilzeTimer();
-function endQuiz() {
-    //Clearing the interval by calling the variable which the interval was assigned to
-    clearInterval(intervalRef);
 }
 
-//press "Start" to startb the game and initiate questions
-startBtn.addEventListener("click", function () {
-    //Timer starts running, updateTimer function is called every 1 sec
-    intervalRef = setInterval(updateTimer, 1000);
+function setTime() {
+    timerInterval = setInterval(intervalFunction, 1000);
+}
 
-    //display the starting time
-    timerElementId.textContent = initialQuizTimeSec;
+//Start
 
-    //hide the start button
-    container.removeChild(startBtn)
-});
-// Inititate Questrions
-var questions = [
-    {
-        question: "What does CSS stand for?",
-        options: [
-            "Cats Standing Still",
-            "Computer Sending Signals",
-            "Cascading Simple Sheets"
-        ],
-        correctAnswer: "Cascading Style Sheets"
-    },
+startButton.Button.addEventListener("click", function () {
+    setTime();
+    startButton.remove();
+    questionEl.textContent = quizOne.question;
+    for (i = 0; i < quizOne.options.length; i++) {
+        var newOption = document.createElement("div");
+        newOption.setAttribute("type", "button");
+        newOption.setAttribute("class", "btn btn-primary");
+        newOption.textContent = quizOne.options[i];
+        optionsEl.appendChild(newOption);
+    }
+})
 
-    {
-        question: "What is a tag in HTML?",
-        options: [
-            "A function",
-            "Identifies the action of HTML",
-            "Gicves a name to the line of code"
-        ],
-        correctAnswer: "Defines how browser will format and display"
-    },
+// var updateTimer = function () {
+//     // var timer = document.getElementById(timerElementId);
+//     //var timeVal = parseInt(timer.innerHTML, 10);
+//     //if (timeVal > 0) {
+//     // timer.innerHTML = --timeVal;
+//     //}
 
-    {
-        question: "JavaScript commonly interacts with programming languages?",
-        options: [
-            "French and Russian",
-            "C++ and Java",
-            "jQuery and Java",
-        ],
-        correctAnswer: "HTML and CSS"
-    },
+//     //starting time decreases by one
+//     initialQuizTimeSec--;
+//     //display the new time on screen everytime inititialQuizTimeSec decreases by 1
+//     timerElementId.textContent = initialQuizTimeSec;
+//     //if the time get to 0, we end the quiz by clearing the interval set on line 42 intervalRef = setInterval(updateTimer, 1000);
+//     if (initialQuizTimeSec <= 0) {
+//         endQuiz();
+//     }
+// };
+// //initialilzeTimer();
+// function endQuiz() {
+//     //Clearing the interval by calling the variable which the interval was assigned to
+//     clearInterval(intervalRef);
+// }
 
-    {
-        question: "What is the syntax for writing a function?",
-        options: [
-            "var = function",
-            "name function(code to execute){paramter1, parameter2}",
-            "function(parameter1, paramenter2) name"
-        ],
-        correctAnswer: "function name(parameter1, paramter2){code to execute}"
-    },
+// //press "Start" to startb the game and initiate questions
+// startBtn.addEventListener("click", function () {
+//     //Timer starts running, updateTimer function is called every 1 sec
+//     intervalRef = setInterval(updateTimer, 1000);
 
-    {
-        question: "JavaScript has been described as...",
-        options: [
-            "light or dark roast.",
-            "giving design to HTML.",
-            "keeping the computer from crashing."
-        ],
-        correctAnswer: "code that animates a website."
-    },
-]
+//     //display the starting time
+//     timerElementId.textContent = initialQuizTimeSec;
 
-//When correctAnswer is clicked
-//if (correctAnswer.addEventListener) {
-//   for (i = 0; i < )
-//}
+//     //hide the start button
+//     container.removeChild(startBtn)
+// });
+// // Inititate Questrions
+// var questions = [
+//     {
+//         question: "What does CSS stand for?",
+//         options: [
+//             "Cats Standing Still",
+//             "Computer Sending Signals",
+//             "Cascading Simple Sheets"
+//         ],
+//         correctAnswer: "Cascading Style Sheets"
+//     },
 
-//High score button
-totalScores = addEventListener("click", function () {
+//     {
+//         question: "What is a tag in HTML?",
+//         options: [
+//             "A function",
+//             "Identifies the action of HTML",
+//             "Gicves a name to the line of code"
+//         ],
+//         correctAnswer: "Defines how browser will format and display"
+//     },
 
-});
+//     {
+//         question: "JavaScript commonly interacts with programming languages?",
+//         options: [
+//             "French and Russian",
+//             "C++ and Java",
+//             "jQuery and Java",
+//         ],
+//         correctAnswer: "HTML and CSS"
+//     },
 
-//Timer, starts at 60sec, counts down and skips 10sec with each question answered incorrectly
+//     {
+//         question: "What is the syntax for writing a function?",
+//         options: [
+//             "var = function",
+//             "name function(code to execute){paramter1, parameter2}",
+//             "function(parameter1, paramenter2) name"
+//         ],
+//         correctAnswer: "function name(parameter1, paramter2){code to execute}"
+//     },
 
-//End of game, stops timer, adds score to list of scores
+//     {
+//         question: "JavaScript has been described as...",
+//         options: [
+//             "light or dark roast.",
+//             "giving design to HTML.",
+//             "keeping the computer from crashing."
+//         ],
+//         correctAnswer: "code that animates a website."
+//     },
+// ]
+
+// //When correctAnswer is clicked
+// //if (correctAnswer.addEventListener) {
+// //   for (i = 0; i < )
+// //}
+
+// //High score button
+// totalScores = addEventListener("click", function () {
+
+// });
+
+// //Timer, starts at 60sec, counts down and skips 10sec with each question answered incorrectly
+
+// //End of game, stops timer, adds score to list of scores
 
